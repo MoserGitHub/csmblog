@@ -6,9 +6,8 @@ sidebar: false
 title: Über COVID-19 Social Monitor
 ---
 
-<img src="/./about_files/logo_ZHAW.jpg" alt="" width="200px" height="80px"/>
-
-<img src="/./about_files/logo_UZH.jpeg" alt="" width="200px" height="80px"/>
+![alt text](/static/img/logo_ZHAW.jpg)
+![alt text](/static/img/logo_UZH.jpeg)
 
 Nach einer ersten grösseren lokalen Ausbreitung zu Beginn des Jahres 2020 in der chinesischen Stadt Wuhan hat sich die durch das Coronavirus SARS-CoV-2 verursachte COVID-19 innert wenigen Wochen zu einer weltweiten Pandemie entwickelt. Deren Auswirkungen sind gewaltig. Einerseits durch die Erkrankung selbst mit zahlreichen Todesfällen und einer enormen Belastung der Gesundheitsversorgung der betroffenen Länder. Andererseits durch die Folgen der Massnahmen zur Eindämmung der Epidemie, insbesondere der Einschränkung der Mobilität und der sozialen Zusammenkünfte sowie der Schliessung von Schulen, Läden, Restaurants und anderen privaten und öffentlichen Begegnungsstätten: der sog. «Lockdown».
 
