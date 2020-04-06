@@ -1,0 +1,34 @@
+---
+authorbox: false
+date: "2020-04-06"
+menu: main
+sidebar: false
+title: Über COVID-19 Social Monitor
+---
+
+<img src="/./about_files/logo_ZHAW.jpg" alt="" width="200px" height="80px"/>
+
+<img src="/./about_files/logo_UZH.jpeg" alt="" width="200px" height="80px"/>
+
+Nach einer ersten grösseren lokalen Ausbreitung zu Beginn des Jahres 2020 in der chinesischen Stadt Wuhan hat sich die durch das Coronavirus SARS-CoV-2 verursachte COVID-19 innert wenigen Wochen zu einer weltweiten Pandemie entwickelt. Deren Auswirkungen sind gewaltig. Einerseits durch die Erkrankung selbst mit zahlreichen Todesfällen und einer enormen Belastung der Gesundheitsversorgung der betroffenen Länder. Andererseits durch die Folgen der Massnahmen zur Eindämmung der Epidemie, insbesondere der Einschränkung der Mobilität und der sozialen Zusammenkünfte sowie der Schliessung von Schulen, Läden, Restaurants und anderen privaten und öffentlichen Begegnungsstätten: der sog. «Lockdown».
+
+Informationen darüber, wie genau sich diese Massnahmen auf die Bevölkerung auswirken, erlauben es, allfällige Probleme frühzeitig zu erkennen und besser einschätzen zu können. Dies umfasst beispielsweise Themen zur sozialen Isolation, tatsächlicher oder befürchteter Arbeitsplatzverlust, Auswirkungen auf die Arbeitsproduktivität und die psychische Belastung durch die ausserordentliche Situation. Dadurch kann zeitnah beschrieben werden, welche sozialen und gesundheitlichen Veränderungen in der Bevölkerung mit der Corona-Krise einhergehen.
+
+Unsere Studie erhebt deshalb laufend Indikatoren zum Wohlbefinden, dem physischen und psychischen Gesundheitszustand, dem Gesundheitsverhalten und der Erwerbssituation der Schweizer Bevölkerung. Veränderungen über die Zeit und negative Entwicklungen können so frühzeitig registriert werden.
+
+- Kurzfristig können so schnell Aussagen zur Wirksamkeit und den unmittelbaren positiven und negativen Auswirkungen von behördlichen Massnahmen zur Bekämpfung des Coronavirus gemacht werden.
+- Mittelfristig werden die Folgen der COVID-19 Krise und der Public-Health-Massnahmen auf die Gesundheit der Bevölkerung sichtbar (z.B. soziale Isolation, physische und psychische Gesundheit, Zugangsbeschränkung zu Gesundheitsversorgung)
+- Langfristig kann z.B. die öffentliche Akzeptanz von Massnahmen und deren Feinjustierung untersucht werden. Wichtige Erkenntnisse für den Umgang bei einer allfälligen zukünftigen Epidemie können gewonnen werden.
+
+# Methodik
+
+Unsere Indikatoren werden bei einer für die Schweizer Bevölkerung repräsentativen Stichprobe regelmässig erfasst. Wir befragen regelmässig rund 2'000 repräsentativ ausgewählte Teilnehmerinnen und Teilnehmer des per Telefon rekrutierten LINK Internet-Panels in den Sprachregionen Deutsch- und Westschweiz und dem Tessin.
+
+Wir messen eine Reihe von etablierten Indikatoren aus den Bereichen Wohlbefinden, physische und psychische Gesundheit, Aktivitäten, Gesundheitsversorgung, Erwerbsarbeit und Gesundheitsverhalten.
+
+Wir veröffentlichen unsere Resultate so rasch wie möglich, um der Öffentlichkeit, Wissenschaft und Behörden rasch Aufschluss über die breiten Auswirkungen der Corona-Krise und der Public-Health-Massnahmen auf die Gesundheit und das Leben der Bevölkerung zu geben. Damit möchten wir einen Beitrag zur besseren Bewältigung dieser ausserordentlichen Situation leisten.
+
+(https://www.zhaw.ch/de/sml/institute-zentren/wig/projekte/covid-19-social-monitor/)
+
+
+Seite mit blogdown und Hugo generiert. Theme: Mainroad (https://github.com/Vimux/mainroad).

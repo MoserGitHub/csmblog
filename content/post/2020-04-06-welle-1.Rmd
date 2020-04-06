@@ -1,0 +1,441 @@
+---
+title: Welle 1
+author: André Moser
+date: '2020-04-06'
+slug: welle-1
+categories: []
+tags: []
+description: ''
+thumbnail: ''
+summary: "Resultate der ersten Welle mit Erhebungszeitraum 30. März 2020 bis 06. April 2020."
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries, echo=FALSE, results='hide', warning=FALSE, message=FALSE}
+library(tidyverse)
+library(rgeos)
+library(rgdal)
+library(rgeos)
+Sys.setenv("PROJ_LIB" = "/usr/local/Cellar/proj/7.0.0/share/proj")
+
+library(tmap)
+library(maptools)
+
+library(Hmisc)
+library(vroom)
+library(reactable)
+library(haven)
+```
+
+### Welle 1
+
+```{r paths and shp, echo=FALSE, results='hide', warning=FALSE, message=FALSE}
+main.path <- "/Users/andremoser/Desktop/EBPI/ZHAW/"
+
+shpborder <- readOGR(paste0(main.path, "gg2012/g3g12_shp_121130/G3L12.shp"), stringsAsFactors = FALSE)
+
+shpl <- readOGR(paste0(main.path, "gg2012/g3g12_shp_121130/G3G12.shp"), stringsAsFactors = FALSE)
+shpl <- shpl[shpl$GMDE>9000,]
+
+shpk <- readOGR(paste0(main.path, "gg2012/g3g12_shp_121130/G3K12.shp"), stringsAsFactors = FALSE)
+shp <- readOGR(paste0(main.path, "gg2012/shp_lang.shp"), stringsAsFactors = FALSE)
+
+tmap_mode("plot")
+
+#proj4string(shpborder) <- CRS("+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +units=m +no_defs")
+#proj4string(shpl) <- CRS("+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +units=m +no_defs")
+#proj4string(shpk) <- CRS("+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +units=m +no_defs")
+#proj4string(shp) <- CRS("+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +units=m +no_defs")
+```
+
+```{r data, echo=FALSE, results='hide', warning=FALSE, message=FALSE, include=FALSE}
+data <- read_dta(paste0(paste0(main.path, "/data/"), "COVSM-w1- 3 Apr 2020.dta"))
+#source(paste0(paste0(main.path, "CSM/CSM_Variables.R")))
+```
+
+```{r vars, include=FALSE}
+sys.source(paste0(paste0(main.path, "CSM/CSM_Variables.R")), envir = knitr::knit_global())
+```
+
+### Umfragepopulation
+
+Aus einem bestehenden Pool von Personen des LINK Instituts wurden ingesamt 7942 Personen für die Umfrageteilnahme angefragt. Per `r paste0(paste0(substring(as.character(Sys.Date()), 9,10), ".", substring(as.character(Sys.Date()), 6,7)),".", substring(as.character(Sys.Date()), 1,4))` wurden Antworten von `r nrow(data)` Personen ausgewertet (Rücklaufquote `r paste0(round(nrow(data)/7942*100, 1), "%")`). Insgesamt gaben `r length(data$geschlecht[data$geschlecht%in%2])` (`r paste0(round(length(data$geschlecht[data$geschlecht%in%2])/nrow(data)*100, 1), "%")`) Frauen\* und `r length(data$geschlecht[data$geschlecht%in%1])` (`r paste0(round(length(data$geschlecht[data$geschlecht%in%1])/nrow(data)*100, 1), "%")`) Männer\* eine Antwort. Das durchschnittliche Alter der Personen welche an der Umfrage teilgenommen haben beträgt `r round(mean(data$age, na.rm=T),0)` Jahre (Jüngste Person: `r round(min(data$age, na.rm=T),0)` Jahre, Älteste Person `r round(max(data$age, na.rm=T),0)` Jahre). Davon waren `r nrow(data[data$age>=65,])` (`r paste0(round(length(data$age[data$age>=65])/nrow(data)*100, 1), "%")`) Personen älter als 65 Jahre. `r length(data$education[data$education%in%1])` (`r paste0(round(length(data$education[data$education%in%1])/nrow(data)*100, 1), "%")`) der befragten Personen hatten einen obligatorischen Schulabschluss, `r length(data$education[data$education%in%2])` (`r paste0(round(length(data$education[data$education%in%2])/nrow(data)*100, 1), "%")`) einen Sekundarstufeabschluss und `r length(data$education[data$education%in%3])` (`r paste0(round(length(data$education[data$education%in%3])/nrow(data)*100, 1), "%")`) einen Abschluss auf Tertiärstufe (`r length(data$education[is.na(data$education)])` [`r paste0(round(length(data$education[is.na(data$education)])/nrow(data)*100, 1), "%")`) Personen machten keine Angabe zur Ausbildung]. Es wurden `r length(data$lregion[data$lregion%in%1])` (`r paste0(round(length(data$lregion[data$lregion%in%1])/nrow(data)*100, 1), "%")`) Personen in der Deutschschweiz, `r length(data$lregion[data$lregion%in%2])` (`r paste0(round(length(data$lregion[data$lregion%in%2])/nrow(data)*100, 1), "%")`) in der Romandie (frankophone Schweiz) und `r length(data$lregion[data$lregion%in%3])` (`r paste0(round(length(data$lregion[data$lregion%in%3])/nrow(data)*100, 1), "%")`) in der italienisch-sprechenden Region der Schweiz befragt.
+
+&nbsp;  
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;  
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;  
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;  
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;  
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+```{r analysis vars, echo=FALSE, results='hide', warning=FALSE, message=FALSE}
+names.var <- c("wb1_cat", "wb2_cat", "wb3_cat", "ph1_cat", "ph2_1_cat", "ph2_2_cat", "ph2_3_cat", "ph2_4_cat", "ph2_5_cat", "ph2_6_cat", "ph2_7_cat", "ph2_8_cat", "ph2_9_cat",  "ph2_10_cat", "ph2_11_cat", "ph2_12_cat", "ms1_cat", "ms2_1_cat", "ms2_2_cat", "ms2_3_cat", "ms2_4_cat", "ms2_5_cat", "ms2_6_cat", "ms2_7_cat", "ss1_cat", "ss2_cat", "ss3_cat", "bf1_cat", "cb1_1_cat", "cb1_2_cat", "cb1_3_cat", "cb2_1_cat", "cb2_2_cat", "cb2_3_cat", "cb3_1_cat",  "cb3_2_cat", "cb3_3_cat", "hb3_1_cat", "hb3_2_cat", "hb3_3_cat", "hb3_4_cat", "hb3_5_cat", "hb3_6_cat", "hb3_7_cat", "hb3_8_cat", "hb3_9_cat", "hs1_1_cat", "hs1_2_cat", "hs1_3_cat", "hs1_4_cat", "hs1_5_cat", "hs1_6_cat", "hs1_7_cat", "hs1_8_cat", "hs1_9_cat", "hs2_1_cat", "hs2_2_cat", "hs2_3_cat", "hs2_4_cat", "hs2_5_cat", "hs2_6_cat", "hs2_7_cat", "hs2_8_cat", "hs2_9_cat", "hs3_cat1",  "hs3_cat2",  "hs3_cat3",  "hs6_cat1",  "hs6_cat2", "hs6_cat3", "hs4_cat", "wi1_cat", "wi7_cat1",  "wi7_cat2",  "wi7_cat3",  "wi7_cat4", "wi7_cat5", "wi7_cat6", "wi7_cat7",  "wc1_cat", "wc2_cat", "wc3_cat", "cb1_1_cat", "cb1_2_cat", "cb1_3_cat", "cb2_1_cat", "cb2_2_cat", "cb2_3_cat", "cb3_1_cat", "cb3_2_cat", "cb3_3_cat", "wb3_cat2", "ph2_1_cat2", "ph2_2_cat2", "ph2_3_cat2", "ph2_4_cat2", "ph2_5_cat2", "ph2_6_cat2", "ph2_7_cat2", "ph2_8_cat2", "ph2_9_cat2",  "ph2_10_cat2", "ph2_11_cat2", "ph2_12_cat2")
+
+cont.var <- c("bf2_total", "bf2_child", "bf2_1", "bf2_2", "bf2_3", "bf2_4", "bf2_5", "hb1", "hb7", "wi3", "wi4", "wi5", "wi6")
+
+ind.lregion <- c("wb3_cat", "ph1_cat", "hs1_1_cat", "ms1_cat", "ss3_cat", "hs2_1_cat", "wc1_cat", "wb3_cat2")
+```
+
+```{r analysis, include=FALSE}
+sys.source(paste0(paste0(main.path, "CSM/CSM_Analysis.R")), envir = knitr::knit_global())
+```
+
+```{r labeling, include=FALSE}
+output$val <- round(output$val, 3)
+
+output$val[output$var=="hb1"] <- round(output$val[output$var=="hb1"], 1)
+output$val[output$var=="hb7"] <- round(output$val[output$var=="hb7"], 1)
+output$val[output$var=="wi3"] <- round(output$val[output$var=="wi3"], 1)
+output$val[output$var=="wi4"] <- round(output$val[output$var=="wi4"], 1)
+output$val[output$var=="wi5"] <- round(output$val[output$var=="wi5"], 1)
+output$val[output$var=="wi6"] <- round(output$val[output$var=="wi6"], 1)
+output$val[output$var=="bf2_total"] <- round(output$val[output$var=="bf2_total"], 1)
+output$val[output$var=="bf2_child"] <- round(output$val[output$var=="bf2_child"], 1)
+output$val[output$var=="bf2_1"] <- round(output$val[output$var=="bf2_1"], 1)
+output$val[output$var=="bf2_2"] <- round(output$val[output$var=="bf2_2"], 1)
+output$val[output$var=="bf2_3"] <- round(output$val[output$var=="bf2_3"], 1)
+output$val[output$var=="bf2_4"] <- round(output$val[output$var=="bf2_4"], 1)
+output$val[output$var=="bf2_5"] <- round(output$val[output$var=="bf2_5"], 1)
+
+output$var <- as.character(output$var)
+output$var2 <- output$var
+
+output$var[output$var=="wb1_cat"] <- "Allgemeine Zufriedenheit:\nSehr zufrieden"
+output$var[output$var=="wb2_cat"] <- "Lebensqualität im Moment:\nGut oder sehr gut"
+output$var[output$var=="wb3_cat"] <- "Lebensqualität im Vergleich vor Corona-Krise:\nEher besser oder viel besser"
+output$var[output$var=="wb3_cat2"] <- "Lebensqualität im Vergleich vor Corona-Krise:\nViel schlechter oder eher schlechter"
+
+output$var[output$var=="ph1_cat"] <- "Allgemeiner Gesundheitszustand:\nGut oder sehr gut"
+
+output$var[output$var=="ph2_1_cat"] <- "Rücken- oder Kreuzschmerzen"
+output$var[output$var=="ph2_2_cat"] <- "Allgemeine Schwäche,\nMüdigkeit, Energielosigkeit"
+output$var[output$var=="ph2_3_cat"] <- "Schmerzen oder Druckgefühl im Bauch"
+output$var[output$var=="ph2_4_cat"] <- "Durchfall oder Verstopfung"
+output$var[output$var=="ph2_5_cat"] <- "Einschlaf- oder\nDurchschlafstörungen"
+output$var[output$var=="ph2_6_cat"] <- "Kopfschmerzen, Druck im Kopf\noder Gesichtsschmerzen"
+output$var[output$var=="ph2_7_cat"] <- "Herzklopfen, Herzjagen, Herzstolpern"
+output$var[output$var=="ph2_8_cat"] <- "Schmerzen im Brustbereich"
+output$var[output$var=="ph2_9_cat"] <- "Fieber"
+output$var[output$var=="ph2_10_cat"] <- "Schmerzen Schultern, Nacken, Armen"
+output$var[output$var=="ph2_11_cat"] <- "Husten"
+output$var[output$var=="ph2_12_cat"] <- "Atembeschwerden"
+
+output$var[output$var=="ms1_cat"] <- "Häufiges Stressempfinden"
+output$var[output$var=="ms2_1_cat"] <- "Sehr nervös"
+output$var[output$var=="ms2_2_cat"] <- "Niedergeschlagen\noder verstimmt"
+output$var[output$var=="ms2_3_cat"] <- "Unruhig und unausgeglichen"
+output$var[output$var=="ms2_4_cat"] <- "Entmutigt und deprimiert"
+output$var[output$var=="ms2_5_cat"] <- "Eher unglücklich"
+output$var[output$var=="ms2_6_cat"] <- "Energielos"
+output$var[output$var=="ms2_7_cat"] <- "Erschöpft"
+
+output$var[output$var=="ss1_cat"] <- "Zufriedenheit Zusammenleben\nHaushalt: Eher unzufrieden"
+output$var[output$var=="ss2_cat"] <- "Zufriedenheit aktuelle\nPartnerschaft: Eher unglücklich"
+output$var[output$var=="ss3_cat"] <- "Gefühle von Einsamkeit:\nHäufig bis sehr oft"
+
+output$var[output$var=="bf1_cat"] <- "(Ehe-)Partner/in: Ja"
+
+output$var[output$var=="hb3_1_cat"] <- "Arbeitsweg"
+output$var[output$var=="hb3_2_cat"] <- "Spaziergang"
+output$var[output$var=="hb3_3_cat"] <- "Freunde/Bekannte treffen:\nIn einer anderen Wohnung"
+output$var[output$var=="hb3_4_cat"] <- "Freunde/Bekannte treffen:\nDraussen"
+output$var[output$var=="hb3_5_cat"] <- "Einkaufen"
+output$var[output$var=="hb3_6_cat"] <- "Sport/Training"
+output$var[output$var=="hb3_7_cat"] <- "Kinderspielplatz aufsuchen"
+output$var[output$var=="hb3_8_cat"] <- "Arztbesuch, Physiotherapie,\nApotheke, etc."
+output$var[output$var=="hb3_9_cat"] <- "Anderes"
+
+output$var[output$var=="hs1_1_cat"] <- "Medizinische\nBehandlung erhalten"
+output$var[output$var=="hs1_2_cat"] <- "Im Spital"
+output$var[output$var=="hs1_3_cat"] <- "Hausarzt"
+output$var[output$var=="hs1_4_cat"] <- "Gynäkologen/Frauenarzt"
+output$var[output$var=="hs1_5_cat"] <- "Psychologen,\nPsychotherapeuten, Psychiater"
+output$var[output$var=="hs1_6_cat"] <- "Augenarzt"
+output$var[output$var=="hs1_7_cat"] <- "Zahnarzt"
+output$var[output$var=="hs1_8_cat"] <- "Physiotherapeuten"
+output$var[output$var=="hs1_9_cat"] <- "Andere"
+
+output$var[output$var=="hs2_1_cat"] <- "Nicht-Beanspruchung\nmed. Behandlung"
+output$var[output$var=="hs2_2_cat"] <- "Im Spital"
+output$var[output$var=="hs2_3_cat"] <- "Hausarzt"
+output$var[output$var=="hs2_4_cat"] <- "Gynäkologen/Frauenarzt"
+output$var[output$var=="hs2_5_cat"] <- "Psychologen,\nPsychotherapeuten, Psychiater"
+output$var[output$var=="hs2_6_cat"] <- "Augenarzt"
+output$var[output$var=="hs2_7_cat"] <- "Zahnarzt"
+output$var[output$var=="hs2_8_cat"] <- "Physiotherapeuten"
+output$var[output$var=="hs2_9_cat"] <- "Andere"
+
+output$var[output$var=="hs3_cat1"] <- "Geplanter Termin/Kontrolle"
+output$var[output$var=="hs3_cat2"] <- "Ungeplanter Termin,\naber kein Notfall"
+output$var[output$var=="hs3_cat3"] <- "Notfall"
+
+output$var[output$var=="hs6_cat1"] <- "Arzt/Spital hat Termin\nverschoben oder abgesagt"
+output$var[output$var=="hs6_cat2"] <- "Ich möchte aktuell keine\nArztpraxis/Spital aufsuchen"
+output$var[output$var=="hs6_cat3"] <- "Anderer Grund"
+
+output$var[output$var=="hs4_cat"] <- "Kontakt Arzt/Spital\nwegen Coronavirus"
+
+output$var[output$var=="wi1_cat"] <- "Bezahlte Arbeit"
+
+output$var[output$var=="wi7_cat1"] <- "Arbeitslos infolge der Corona-Krise"
+output$var[output$var=="wi7_cat2"] <- "Bereits vor Corona-Krise\narbeitslos"
+output$var[output$var=="wi7_cat3"] <- "In Ausbildung"
+output$var[output$var=="wi7_cat4"] <- "Hausfrau / Hausmann"
+output$var[output$var=="wi7_cat5"] <- "Rentnerin / Rentner"
+output$var[output$var=="wi7_cat6"] <- "Anderes"
+output$var[output$var=="wi7_cat7"] <- "In Anstellung"
+
+output$var[output$var=="wc1_cat"] <- "Angst Arbeitplatz zu verlieren"
+output$var[output$var=="wc2_cat"] <- "Homeoffice seit Corona-Krise"
+output$var[output$var=="wc3_cat"] <- "Homeoffice vor Corona-Krise"
+
+output$var[output$var=="cb1_1_cat"] <- "Jüngstes Kind\nist unruhig und überaktiv"
+output$var[output$var=="cb1_2_cat"] <- "Jüngstes Kind klagt häufig über\nKopfschmerzen, Bauchschmerzen oder Übelkeit"
+output$var[output$var=="cb1_3_cat"] <- "Jüngstes Kind hat oft Wutanfälle,\nist aufbrausend"
+
+output$var[output$var=="cb2_1_cat"] <- "Zweitjüngstes Kind ist unruhig und überaktiv"
+output$var[output$var=="cb2_2_cat"] <- "Zweitjüngstes Kind klagt häufig über\nKopfschmerzen, Bauchschmerzen oder Übelkeit"
+output$var[output$var=="cb2_3_cat"] <- "Zweitjüngstes Kind hat oft Wutanfälle,\nist aufbrausend"
+
+output$var[output$var=="cb3_1_cat"] <- "Drittjüngstes Kind ist unruhig und überaktiv"
+output$var[output$var=="cb3_2_cat"] <- "Drittjüngstes Kind klagt häufig über\nKopfschmerzen, Bauchschmerzen oder Übelkeit"
+output$var[output$var=="cb3_3_cat"] <- "Drittjüngstes Kind hat oft Wutanfälle,\nist aufbrausend"
+
+output$var[output$var=="bf2_total"] <- "Anzahl Kinder und\nErwachsene"
+output$var[output$var=="bf2_child"] <- "Anzahl Kinder"
+output$var[output$var=="bf2_1"] <- "Anzahl 0-6 jährige Kinder"
+output$var[output$var=="bf2_2"] <- "Anzahl 7-12 jährige Kinder"
+output$var[output$var=="bf2_3"] <- "Anzahl 13-17 jährige Kinder"
+output$var[output$var=="bf2_4"] <- "Anzahl 18-64 jährige Erwachsene"
+output$var[output$var=="bf2_5"] <- "Anzahl 65+ jährige Erwachsene"
+
+output$var[output$var=="hb1"] <- "Zuhause für min. 15 Min. verlassen"
+output$var[output$var=="hb7"] <- "Anzahl Tage mit moderater\nphysischer Aktivität"
+
+output$var[output$var=="wi3"] <- "Versäumte Arbeitsstunden\nwegen Corona-Krise"
+output$var[output$var=="wi4"] <- "Versäumte Arbeitsstunden\nwegen Krankheit/Unfall"
+output$var[output$var=="wi5"] <- "Versäumte Arbeitsstunden\nwegen anderen Gründen"
+output$var[output$var=="wi6"] <- "Tatsächliche\nArbeitsstunden"
+```
+
+# Allgemeine Gesundheit und Wohlbefinden
+
+```{r, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+var <- c("wb1_cat", "wb2_cat", "wb3_cat", "wb3_cat2", "ph1_cat")
+ggplot(output[output$var2%in%var, ]) + geom_bar( aes(x=reorder(var, -val), y=val), stat="identity", fill="skyblue", alpha=0.7, width=0.5)+ geom_text(aes( x=var, label =scales::percent(val, accuracy = 0.1), y= val ), stat= "identity", vjust = -.5, hjust=-0.6, size=3) + geom_errorbar(aes(x=var, ymin=lci, ymax=uci), size=.2, , width = 0.2)+ theme_bw() +theme(legend.position="bottom", axis.text.x = element_text(angle = 45, size=12,  hjust = 1), axis.text.y = element_text(size=12), plot.title = element_text(face="bold")) + scale_y_continuous(limits=c(0, 1), breaks=c(0, 0.25, 0.5, 0.75, 1), labels = scales::percent) + ylab("") + xlab("") + ggtitle("Wohlbefinden und Gesundheit") + theme()
+```
+
+**Allgemeiner Gesundheitszustand: Gut oder sehr gut**
+```{r, echo=FALSE, results='asis', warning=FALSE, message=FALSE, fig.height=5, fig.width=6}
+
+datamap <- output.lregion %>% filter(var=="ph1_cat")
+datamap$val <- paste0(datamap$val*100, "%")
+
+shpplot <- merge(x=shp, y=datamap, by.x="hsa", by.y="lregion")
+
+tm_shape(shpplot)+tm_fill("hsa", palette="Accent", legend.show = F, title="", style="quantile", n=4, legend.format=list(digits=1), alpha=0.5)+tm_shape(shpl)+tm_fill( alpha=1, col="#66B2FF")+tm_borders( alpha=1, col="#66B2FF", lwd=1)+tm_shape(shpplot)+tm_text("val", fontface="bold")+tm_shape(shp)+tm_borders( alpha=1, col="gray", lwd=1)+tm_shape(shpborder)+tm_borders(col="black", alpha=1, lwd=1.5)+tm_layout(frame=F)
+
+#tm_shape(shpplot[c("val")])+tm_fill("val", palette="Accent", legend.show = T, title="", style="quantile", n=4, legend.format=list(digits=1), alpha=0.7)+tm_text("val")+tm_shape(shpl)+tm_fill( alpha=1, col="#66B2FF")+tm_borders( alpha=1, col="#66B2FF", lwd=1)+tm_shape(shp)+tm_borders( alpha=1, col="gray", lwd=1)+tm_shape(shpborder)+tm_borders(col="black", alpha=1, lwd=1.5)
+```
+
+**Lebensqualität im Vergleich vor Corona-Krise: Viel schlechter oder eher schlechter**
+```{r, echo=FALSE, results='asis', warning=FALSE, message=FALSE, fig.height=5, fig.width=6}
+datamap <- output.lregion %>% filter(var=="wb3_cat2")
+datamap$val <- paste0(datamap$val*100, "%")
+
+shpplot <- merge(x=shp, y=datamap, by.x="hsa", by.y="lregion")
+
+tm_shape(shpplot)+tm_fill("hsa", palette="Accent", legend.show = F, title="", style="quantile", n=4, legend.format=list(digits=1), alpha=0.5)+tm_shape(shpl)+tm_fill( alpha=1, col="#66B2FF")+tm_borders( alpha=1, col="#66B2FF", lwd=1)+tm_shape(shpplot)+tm_text("val", fontface="bold")+tm_shape(shp)+tm_borders( alpha=1, col="gray", lwd=1)+tm_shape(shpborder)+tm_borders(col="black", alpha=1, lwd=1.5)+tm_layout(frame=F)
+```
+
+# Körperliche Gesundheit
+
+```{r, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+var <- c("ph2_1_cat", "ph2_2_cat", "ph2_3_cat", "ph2_4_cat", "ph2_5_cat", "ph2_6_cat", "ph2_7_cat", "ph2_8_cat", "ph2_9_cat",  "ph2_10_cat", "ph2_11_cat", "ph2_12_cat")
+
+ggplot(output[output$var2%in%var, ]) + geom_bar( aes(x=reorder(var, -val), y=val), stat="identity", fill="lightgreen", alpha=0.7)+ geom_text(aes( x=var, label =scales::percent(val, accuracy = 0.1), y= 0 ), stat= "identity", vjust = .5, size=3) + geom_errorbar(aes(x=var, ymin=lci, ymax=uci), size=.2, , width = 0.2)+ theme_bw() +theme(legend.position="bottom", axis.text.x = element_text(angle = 45, size=10,  hjust = 1), axis.text.y = element_text(size=12), plot.title = element_text(face="bold")) + scale_y_continuous(limits=c(0, 1), breaks=c(0, 0.25, 0.5, 0.75, 1), labels = scales::percent) + ylab("") + xlab("") + ggtitle("Krankheitssymptome letzte 7 Tage") + theme()
+```
+
+# Mentale Gesundheit
+
+```{r mh, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+var <- c("ms1_cat", "ms2_1_cat", "ms2_2_cat", "ms2_3_cat", "ms2_4_cat", "ms2_5_cat", "ms2_6_cat", "ms2_7_cat")
+
+ggplot(output[output$var2%in%var, ]) + geom_bar( aes(x=reorder(var, -val), y=val), stat="identity", fill="#F9D573", alpha=0.7)+ geom_text(aes( x=var, label =scales::percent(val, accuracy = 0.1), y= val ), stat= "identity", vjust = -.5, hjust=-0.5, size=3) + geom_errorbar(aes(x=var, ymin=lci, ymax=uci), size=.2, , width = 0.2)+ theme_bw() +theme(legend.position="bottom", axis.text.x = element_text(angle = 45, size=12,  hjust = 1), axis.text.y = element_text(size=12), plot.title = element_text(face="bold")) + scale_y_continuous(limits=c(0, 1), breaks=c(0, 0.25, 0.5, 0.75, 1), labels = scales::percent) + ylab("") + xlab("") + ggtitle("Psychische Belastung letzte 7 Tage") + theme()
+```
+
+**Häufiges Stressempfinden**
+
+```{r, echo=FALSE, results='asis', warning=FALSE, message=FALSE, fig.height=5, fig.width=6}
+datamap <- output.lregion %>% filter(var=="ms1_cat")
+datamap$val <- paste0(datamap$val*100, "%")
+
+shpplot <- merge(x=shp, y=datamap, by.x="hsa", by.y="lregion")
+
+tm_shape(shpplot)+tm_fill("hsa", palette="Accent", legend.show = F, title="", style="quantile", n=4, legend.format=list(digits=1), alpha=0.5)+tm_shape(shpl)+tm_fill( alpha=1, col="#66B2FF")+tm_borders( alpha=1, col="#66B2FF", lwd=1)+tm_shape(shpplot)+tm_text("val", fontface="bold")+tm_shape(shp)+tm_borders( alpha=1, col="gray", lwd=1)+tm_shape(shpborder)+tm_borders(col="black", alpha=1, lwd=1.5)+tm_layout(frame=F)
+```
+
+# Soziales Wohlbefinden
+
+```{r ss, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+var <- c("ss1_cat", "ss2_cat", "ss3_cat")
+
+ggplot(output[output$var2%in%var, ]) + geom_bar( aes(x=reorder(var, -val), y=val), stat="identity", fill="#E5CCFF", alpha=0.7, width=0.5)+ geom_text(aes( x=var, label =scales::percent(val, accuracy = 0.1), y= val ), stat= "identity", vjust = -.5, hjust=-0.5, size=3) + geom_errorbar(aes(x=var, ymin=lci, ymax=uci), size=.2, , width = 0.2)+ theme_bw() +theme(legend.position="bottom", axis.text.x = element_text(angle = 45, size=12,  hjust = 1), axis.text.y = element_text(size=12), plot.title = element_text(face="bold")) + scale_y_continuous(limits=c(0, 1), breaks=c(0, 0.25, 0.5, 0.75, 1), labels = scales::percent) + ylab("") + xlab("") + ggtitle("Einsamkeit und Zusammenleben") + theme()
+```
+
+**Gefühle von Einsamkeit: Häufig bis sehr oft**
+
+```{r, echo=FALSE, results='asis', warning=FALSE, message=FALSE, fig.height=5, fig.width=6}
+datamap <- output.lregion %>% filter(var=="ss3_cat")
+datamap$val <- paste0(datamap$val*100, "%")
+
+shpplot <- merge(x=shp, y=datamap, by.x="hsa", by.y="lregion")
+
+tm_shape(shpplot)+tm_fill("hsa", palette="Accent", legend.show = F, title="", style="quantile", n=4, legend.format=list(digits=1), alpha=0.5)+tm_shape(shpl)+tm_fill( alpha=1, col="#66B2FF")+tm_borders( alpha=1, col="#66B2FF", lwd=1)+tm_shape(shpplot)+tm_text("val", fontface="bold")+tm_shape(shp)+tm_borders( alpha=1, col="gray", lwd=1)+tm_shape(shpborder)+tm_borders(col="black", alpha=1, lwd=1.5)+tm_layout(frame=F)
+```
+
+# Körperliche Aktivität
+
+```{r ss2, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+var <- c("hb1", "hb7")
+
+ggplot(output[output$var2%in%var, ]) + geom_bar( aes(x=reorder(var, -val), y=val), stat="identity", fill="#99CCFF", alpha=0.7, width=0.4)+ geom_text(aes( x=var, label =val, y= val ), stat= "identity", vjust = -.5, hjust=-2, size=3) + geom_errorbar(aes(x=var, ymin=lci, ymax=uci), size=.2, , width = 0.2)+ theme_bw() +theme(legend.position="bottom", axis.text.x = element_text(angle = 45, size=12,  hjust = 1), axis.text.y = element_text(size=12), plot.title = element_text(face="bold")) + ylab("Häufigkeit") + xlab("") + ggtitle("Aktivität innerhalb der letzten 7 Tage") + theme()
+```
+
+```{r out, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+var <- c("hb3_1_cat", "hb3_2_cat", "hb3_3_cat", "hb3_4_cat", "hb3_5_cat", "hb3_6_cat", "hb3_7_cat", "hb3_8_cat", "hb3_9_cat")
+
+
+
+ggplot(output[output$var2%in%var, ]) + geom_bar( aes(x=reorder(var, -val), y=val), stat="identity", fill="#E0E0E0", alpha=0.7)+ geom_text(aes( x=var, label =scales::percent(val, accuracy = 0.1), y= val ), stat= "identity", vjust = -.5, hjust=-0.5, size=3)+ geom_text(aes( x=var, label =scales::percent(val), y= val ), stat= "identity", vjust = -.5, hjust=-0.5, size=3) + geom_errorbar(aes(x=var, ymin=lci, ymax=uci), size=.2, , width = 0.2)+ theme_bw() +theme(legend.position="bottom", axis.text.x = element_text(angle = 45, size=12,  hjust = 1), axis.text.y = element_text(size=12), plot.title = element_text(face="bold")) + scale_y_continuous(limits=c(0, 1), breaks=c(0, 0.25, 0.5, 0.75, 1), labels = scales::percent) + ylab("") + xlab("") + ggtitle("Verlassen des Hauses/Wohnung\ninnerhalb der letzten 7 Tage wegen") + theme() 
+```
+
+# Beanspruchung Gesundheitsversorgung
+
+```{r out2, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+var <- c("hs1_1_cat", "hs1_2_cat", "hs1_3_cat", "hs1_4_cat", "hs1_5_cat", "hs1_6_cat", "hs1_7_cat", "hs1_8_cat", "hs1_9_cat", "hs4_cat")
+
+ggplot(output[output$var2%in%var, ]) + geom_bar( aes(x=reorder(var, -val), y=val), stat="identity", fill="#FFCCFF", alpha=0.7)+ geom_text(aes( x=var, label =scales::percent(val, accuracy = 0.1), y= val ), stat= "identity", vjust = -.5, hjust=-0.5, size=3) + geom_errorbar(aes(x=var, ymin=lci, ymax=uci), size=.2, , width = 0.2)+ theme_bw() +theme(legend.position="bottom", axis.text.x = element_text(angle = 45, size=12,  hjust = 1), axis.text.y = element_text(size=12), plot.title = element_text(face="bold")) + scale_y_continuous(limits=c(0, 1), breaks=c(0, 0.25, 0.5, 0.75, 1), labels = scales::percent) + ylab("") + xlab("") + ggtitle("Medizinische Behandlung innerhalb der letzten 14 Tage") + theme()
+```
+
+**Medizinische Behandlung erhalten**
+
+```{r, echo=FALSE, results='asis', warning=FALSE, message=FALSE, fig.height=5, fig.width=6}
+datamap <- output.lregion %>% filter(var=="hs1_1_cat")
+datamap$val <- paste0(datamap$val*100, "%")
+
+shpplot <- merge(x=shp, y=datamap, by.x="hsa", by.y="lregion")
+
+tm_shape(shpplot)+tm_fill("hsa", palette="Accent", legend.show = F, title="", style="quantile", n=4, legend.format=list(digits=1), alpha=0.5)+tm_shape(shpl)+tm_fill( alpha=1, col="#66B2FF")+tm_borders( alpha=1, col="#66B2FF", lwd=1)+tm_shape(shpplot)+tm_text("val", fontface="bold")+tm_shape(shp)+tm_borders( alpha=1, col="gray", lwd=1)+tm_shape(shpborder)+tm_borders(col="black", alpha=1, lwd=1.5)+tm_layout(frame=F)
+```
+
+```{r hs1, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+var <- c("hs2_1_cat", "hs2_2_cat", "hs2_3_cat", "hs2_4_cat", "hs2_5_cat", "hs2_6_cat", "hs2_7_cat", "hs2_8_cat", "hs2_9_cat")
+
+ggplot(output[output$var2%in%var, ]) + geom_bar( aes(x=reorder(var, -val), y=val), stat="identity", fill="#FF9999", alpha=0.7)+ geom_text(aes( x=var, label =scales::percent(val, accuracy = 0.1), y= val ), stat= "identity", vjust = -.5, hjust=-0.5, size=3) + geom_errorbar(aes(x=var, ymin=lci, ymax=uci), size=.2, , width = 0.2)+ theme_bw() +theme(legend.position="bottom", axis.text.x = element_text(angle = 45, size=12,  hjust = 1), axis.text.y = element_text(size=12), plot.title = element_text(face="bold")) + scale_y_continuous(limits=c(0, 1), breaks=c(0, 0.25, 0.5, 0.75, 1), labels = scales::percent) + ylab("") + xlab("") + ggtitle("Nicht-Beanspruchung medizinische Behandlung\ninnerhalb der letzten 14 Tage wegen Corona-Krise") + theme()
+```
+
+**Nicht-Beanspruchung med. Behandlung**
+
+```{r, echo=FALSE, results='asis', warning=FALSE, message=FALSE, fig.height=5, fig.width=6}
+datamap <- output.lregion %>% filter(var=="hs2_1_cat")
+datamap$val <- paste0(datamap$val*100, "%")
+
+shpplot <- merge(x=shp, y=datamap, by.x="hsa", by.y="lregion")
+
+tm_shape(shpplot)+tm_fill("hsa", palette="Accent", legend.show = F, title="", style="quantile", n=4, legend.format=list(digits=1), alpha=0.5)+tm_shape(shpl)+tm_fill( alpha=1, col="#66B2FF")+tm_borders( alpha=1, col="#66B2FF", lwd=1)+tm_shape(shpplot)+tm_text("val", fontface="bold")+tm_shape(shp)+tm_borders( alpha=1, col="gray", lwd=1)+tm_shape(shpborder)+tm_borders(col="black", alpha=1, lwd=1.5)+tm_layout(frame=F)
+```
+
+```{r hs2, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+var <- c("hs3_cat1",  "hs3_cat2",  "hs3_cat3")
+
+ggplot(output[output$var2%in%var, ]) + geom_bar( aes(x=reorder(var, -val), y=val), stat="identity", fill="#CCFFE5", alpha=0.7, width=0.5)+ geom_text(aes( x=var, label =scales::percent(val, accuracy = 0.1), y= val ), stat= "identity", vjust = -.5, hjust=-0.8, size=3) + geom_errorbar(aes(x=var, ymin=lci, ymax=uci), size=.2, , width = 0.2)+ theme_bw() +theme(legend.position="bottom", axis.text.x = element_text(angle = 45, size=12,  hjust = 1), axis.text.y = element_text(size=12), plot.title = element_text(face="bold")) + scale_y_continuous(limits=c(0, 1), breaks=c(0, 0.25, 0.5, 0.75, 1), labels = scales::percent) + ylab("") + xlab("") + ggtitle("Art der Behandlung bei Nicht-Beanspruchung\ndes Gesundheitssystems") + theme()
+```
+
+```{r hs3, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+var <- c("hs6_cat1",  "hs6_cat2", "hs6_cat3")
+
+ggplot(output[output$var2%in%var, ]) + geom_bar( aes(x=reorder(var, -val), y=val), stat="identity", fill="#0066CC", alpha=0.7, width=0.5)+ geom_text(aes( x=var, label =scales::percent(val, accuracy = 0.1), y= val ), stat= "identity", vjust = -.5, hjust=-0.8, size=3) + geom_errorbar(aes(x=var, ymin=lci, ymax=uci), size=.2, , width = 0.2)+ theme_bw() +theme(legend.position="bottom", axis.text.x = element_text(angle = 45, size=12,  hjust = 1), axis.text.y = element_text(size=12), plot.title = element_text(face="bold")) + scale_y_continuous(limits=c(0, 1), breaks=c(0, 0.25, 0.5, 0.75, 1), labels = scales::percent) + ylab("") + xlab("") + ggtitle("Grund der Nicht-Beanspruchung bei Nicht-Beanspruchung\ndes Gesundheitssystems") + theme()
+```
+
+# Arbeitssituation
+
+```{r ws1, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+
+var <- c("wi7_cat1",  "wi7_cat2")
+
+ggplot(output[output$var2%in%var, ]) + geom_bar( aes(x=reorder(var, -val), y=val), stat="identity", fill="#FF007F", alpha=0.7, width=0.5)+ geom_text(aes( x=var, label =scales::percent(val, accuracy = 0.1), y= val ), stat= "identity", vjust = -.5, hjust=-1, size=3) + geom_errorbar(aes(x=var, ymin=lci, ymax=uci), size=.2, , width = 0.2)+ theme_bw() +theme(legend.position="bottom", axis.text.x = element_text(angle = 45, size=12,  hjust = 1), axis.text.y = element_text(size=12), plot.title = element_text(face="bold")) + scale_y_continuous(limits=c(0, 1), breaks=c(0, 0.25, 0.5, 0.75, 1), labels = scales::percent) + ylab("") + xlab("") + ggtitle("Berufliche Situation") + theme()
+```
+
+
+```{r ws2, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+var <- c("wc1_cat",  "wc2_cat", "wc3_cat")
+
+ggplot(output[output$var2%in%var, ]) + geom_bar( aes(x=reorder(var, -val), y=val), stat="identity", fill="#CCCC00", alpha=0.7, width=0.5)+ geom_text(aes( x=var, label =scales::percent(val, accuracy = 0.1), y= val ), stat= "identity", vjust = -.5, hjust=-0.8, size=3) + geom_errorbar(aes(x=var, ymin=lci, ymax=uci), size=.2, , width = 0.2)+ theme_bw() +theme(legend.position="bottom", axis.text.x = element_text(angle = 45, size=12,  hjust = 1), axis.text.y = element_text(size=12), plot.title = element_text(face="bold")) + scale_y_continuous(limits=c(0, 1), breaks=c(0, 0.25, 0.5, 0.75, 1), labels = scales::percent) + ylab("") + xlab("") + ggtitle("Arbeitssituation innerhalb der letzten 7 Tage") + theme()
+```
+
+**Angst Arbeitplatz zu verlieren**
+
+```{r, echo=FALSE, results='asis', warning=FALSE, message=FALSE, fig.height=5, fig.width=6}
+datamap <- output.lregion %>% filter(var=="wc1_cat")
+datamap$val <- paste0(datamap$val*100, "%")
+
+shpplot <- merge(x=shp, y=datamap, by.x="hsa", by.y="lregion")
+
+tm_shape(shpplot)+tm_fill("hsa", palette="Accent", legend.show = F, title="", style="quantile", n=4, legend.format=list(digits=1), alpha=0.5)+tm_shape(shpl)+tm_fill( alpha=1, col="#66B2FF")+tm_borders( alpha=1, col="#66B2FF", lwd=1)+tm_shape(shpplot)+tm_text("val", fontface="bold")+tm_shape(shp)+tm_borders( alpha=1, col="gray", lwd=1)+tm_shape(shpborder)+tm_borders(col="black", alpha=1, lwd=1.5)+tm_layout(frame=F)
+```
+
+```{r ws3, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+#var <- c("hb7", "wi3", "wi4", "wi7")
+
+#ggplot(output[output$var2%in%var, ]) + geom_bar( aes(x=reorder(var, -val), y=val), stat="identity", fill="#FFCC99", alpha=0.7, width=0.5)+ geom_text(aes( x=var, label =val, y= val ), stat= "identity", vjust = -.5, hjust=-0.9, size=3) + geom_errorbar(aes(x=var, ymin=lci, ymax=uci), size=.2, , width = 0.2)+ theme_bw() +theme(legend.position="bottom", axis.text.x = element_text(angle = 45, size=12,  hjust = 1), axis.text.y = element_text(size=12), plot.title = element_text(face="bold")) + ylab("Stunden") + xlab("") + ggtitle("Arbeitsstunden innerhalb der letzten 7 Tage") + theme() + scale_y_continuous(limits=c(0, 40))
+```
+
+```{r child, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+#var <- c("cb1_1_cat", "cb1_2_cat", "cb1_3_cat", "cb2_1_cat", "cb2_2_cat", "cb2_3_cat", "cb3_1_cat",  "cb3_2_cat", "cb3_3_cat")
+
+#ggplot(output[output$var2%in%var, ]) + geom_bar( aes(x=reorder(var, -val), y=val), stat="identity", fill="#99FFFF", alpha=0.7)+ geom_text(aes( x=var, label =scales::percent(val), y= val ), stat= "identity", vjust = -.5, hjust=-0.4, size=3) + geom_errorbar(aes(x=var, ymin=lci, ymax=uci), size=.2, , width = 0.2)+ theme_bw() +theme(legend.position="bottom", axis.text.x = element_text(angle = 45, size=10,  hjust = 1), axis.text.y = element_text(size=12), plot.title = element_text(face="bold")) + scale_y_continuous(limits=c(0, 1), breaks=c(0, 0.25, 0.5, 0.75, 1), labels = scales::percent) + ylab("") + xlab("") + ggtitle("Situation bei Kindern") + theme()
+```
+
+```{r hh, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+#var <- c("bf2_total", "bf2_child", "bf2_1", "bf2_2", "bf2_3", "bf2_4")
+
+#ggplot(output[output$var2%in%var, ]) + geom_bar( aes(x=reorder(var, -val), y=val), stat="identity", fill="#FF99FF", alpha=0.7)+ geom_text(aes( x=var, label =val, y= val ), stat= "identity", vjust = -.5, hjust=-0.8, size=3) + geom_errorbar(aes(x=var, ymin=lci, ymax=uci), size=.2, , width = 0.2)+ theme_bw() +theme(legend.position="bottom", axis.text.x = element_text(angle = 45, size=12,  hjust = 1), axis.text.y = element_text(size=12), plot.title = element_text(face="bold")) + ylab("Mittlere Anzahl") + xlab("") + ggtitle("Haushaltstruktur") + theme()
+```
+
+
+
+```{r, echo=FALSE, results='asis', warning=FALSE, message=FALSE, fig.height=5, fig.width=6}
+#**Antwortverteilung pro Sprachregion (Anzahl)**
+
+#datamap <- output.lregion %>% filter(var=="ph1_cat")
+
+#shpplot <- merge(x=shp, y=datamap, by.x="hsa", by.y="lregion")
+
+#tm_shape(shpplot)+tm_fill("hsa", palette="Accent", legend.show = F, title="", style="quantile", n=4, legend.format=list(digits=1), alpha=0.5)+tm_shape(shpl)+tm_fill( alpha=1, col="#66B2FF")+tm_borders( alpha=1, col="#66B2FF", lwd=1)+tm_shape(shpplot)+tm_text("n", fontface="bold")+tm_shape(shp)+tm_borders( alpha=1, col="gray", lwd=1)+tm_shape(shpborder)+tm_borders(col="black", alpha=1, lwd=1.5)+tm_layout(frame=F)
+```
+
+&nbsp;  
+&nbsp;
+
+**Kartendarstellung:** Färbungen: Sprachregionen
+
+**Quelle Karten Shapefile:** Bundesamt für Landestopograpfie, swisstopo

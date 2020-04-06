@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>COVID-19 Social Monitor</title>
+    <link>/</link>
+    <description>Recent content on COVID-19 Social Monitor</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de</language>
+    <lastBuildDate>Mon, 06 Apr 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Welle 1</title>
+      <link>/post/welle-1/</link>
+      <pubDate>Mon, 06 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/welle-1/</guid>
+      <description>Resultate der ersten Welle mit Erhebungszeitraum 30. März 2020 bis 06. April 2020.</description>
+    </item>
+    
+    <item>
+      <title>Über COVID-19 Social Monitor</title>
+      <link>/about/</link>
+      <pubDate>Mon, 06 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Nach einer ersten grösseren lokalen Ausbreitung zu Beginn des Jahres 2020 in der chinesischen Stadt Wuhan hat sich die durch das Coronavirus SARS-CoV-2 verursachte COVID-19 innert wenigen Wochen zu einer weltweiten Pandemie entwickelt. Deren Auswirkungen sind gewaltig. Einerseits durch die Erkrankung selbst mit zahlreichen Todesfällen und einer enormen Belastung der Gesundheitsversorgung der betroffenen Länder. Andererseits durch die Folgen der Massnahmen zur Eindämmung der Epidemie, insbesondere der Einschränkung der Mobilität und der sozialen Zusammenkünfte sowie der Schliessung von Schulen, Läden, Restaurants und anderen privaten und öffentlichen Begegnungsstätten: der sog.</description>
+    </item>
+    
+  </channel>
+</rss>
