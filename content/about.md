@@ -20,7 +20,7 @@ Unsere Studie erhebt deshalb laufend Indikatoren zum Wohlbefinden, dem physische
 - Mittelfristig werden die Folgen der COVID-19 Krise und der Public-Health-Massnahmen auf die Gesundheit der Bevölkerung sichtbar (z.B. soziale Isolation, physische und psychische Gesundheit, Zugangsbeschränkung zu Gesundheitsversorgung)
 - Langfristig kann z.B. die öffentliche Akzeptanz von Massnahmen und deren Feinjustierung untersucht werden. Wichtige Erkenntnisse für den Umgang bei einer allfälligen zukünftigen Epidemie können gewonnen werden.
 
-# Methodik
+## Methodik
 
 Unsere Indikatoren werden bei einer für die Schweizer Bevölkerung repräsentativen Stichprobe regelmässig erfasst. Wir befragen regelmässig rund 2'000 repräsentativ ausgewählte Teilnehmerinnen und Teilnehmer des per Telefon rekrutierten LINK Internet-Panels in den Sprachregionen Deutsch- und Westschweiz und dem Tessin.
 
@@ -28,7 +28,49 @@ Wir messen eine Reihe von etablierten Indikatoren aus den Bereichen Wohlbefinden
 
 Wir veröffentlichen unsere Resultate so rasch wie möglich, um der Öffentlichkeit, Wissenschaft und Behörden rasch Aufschluss über die breiten Auswirkungen der Corona-Krise und der Public-Health-Massnahmen auf die Gesundheit und das Leben der Bevölkerung zu geben. Damit möchten wir einen Beitrag zur besseren Bewältigung dieser ausserordentlichen Situation leisten.
 
-(https://www.zhaw.ch/de/sml/institute-zentren/wig/projekte/covid-19-social-monitor/)
+[Projektseite ZHAW](https://www.zhaw.ch/de/sml/institute-zentren/wig/projekte/covid-19-social-monitor/)
+
+## Ansprechpersonen
+
+[Dr. Marc Höglinger](https://www.zhaw.ch/de/ueber-uns/person/hoeg/), ZHAW School of Management and Law, Winterthurer Institut für Gesundheitsökonomie (WIG), Versorgungsforschung
+
+[Dr. André Moser](https://www.ebpi.uzh.ch/en/aboutus/departments/epidemiology/cde/teamcde/moser_andre.html), Universität Zürich, Institut für Epidemiologie, Biostatistik & Prävention (EBPI)
+
+[Maria Johanna Carlander](https://www.zhaw.ch/de/ueber-uns/person/cara/), ZHAW School of Management and Law, Winterthurer Institut für Gesundheitsökonomie (WIG), Versorgungsforschung
+
+[PD Dr. Oliver Hämmig](https://www.ebpi.uzh.ch/en/aboutus/departments/epidemiology/cde/groupleaderscde/haemmig.html), Universität Zürich, Institut für Epidemiologie, Biostatistik & Prävention (EBPI)
+
+[Prof. Dr. Simon Wieser](https://www.zhaw.ch/de/ueber-uns/person/wiso/), ZHAW School of Management and Law, Winterthurer Institut für Gesundheitsökonomie (WIG), Versorgungsforschung
+
+[Prof. Dr. Milo A. Puhan](https://www.ebpi.uzh.ch/de/aboutus/director.html), Universität Zürich, Institut für Epidemiologie, Biostatistik & Prävention (EBPI)
+
+Projektmitarbeit: Anja Collenberg, Stephanie Dosch, Sarah Heiniger, Flurina Meier
+
+Danksagung: 
+
+**Datenaufbereitung, Analysen und Darstellung:** Dr. Marc Höglinger (Winterthurer Institut für Gesundheitsökonomie, ZHAW School of Management and Law) und
+Dr. André Moser (Institut für Epidemiologie, Biostatistik und Prävention, Universität Zürich)
+
+**Reproduzierbarkeit:** Variablenaufbereitung und Analysecodes abgelegt auf https://github.com/MoserGitHub/csm
+
+**Datenverfügbarkeit:** Anonymisierte Daten werden nach Abschluss sämtlicher Umfragen öffentlich zugänglich gemacht.
+
+**Rekrutierung und Kontaktierung der Umfrage-Teilnehmerinnen und Teilnehmer: **LINK Institut https://www.link.ch
+
+**Impressum:**
+
+\newline
+
+Winterthurer Institut für Gesundheitsökonomie, ZHAW School of Management and Law,
+Gertrudstrasse 15,
+CH-8401 Winterthur
+
+Institut für Epidemiologie, Biostatistik und Prävention,
+Universität Zürich,
+Hirschengraben 84,
+CH-8001 Zürich
+
+Rekrutierung und Kontaktierung der Umfrage-Teilnehmerinnen und Teilnehmer
 
 
 Seite mit blogdown und Hugo generiert. Theme: Mainroad (https://github.com/Vimux/mainroad).
