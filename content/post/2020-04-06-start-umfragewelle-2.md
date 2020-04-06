@@ -9,4 +9,4 @@ description: ''
 thumbnail: ''
 ---
 
-Am 06.04.2020 startet die Umfragewelle 2.
+Die zweite Umfragewelle startet am 06. April 2020 und dauert bis am 14. April 2020.
