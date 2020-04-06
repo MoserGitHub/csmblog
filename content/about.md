@@ -46,7 +46,7 @@ Wir veröffentlichen unsere Resultate so rasch wie möglich, um der Öffentlichk
 
 Projektmitarbeit: Anja Collenberg, Stephanie Dosch, Sarah Heiniger, Flurina Meier
 
-Danksagung: 
+Wir bedanken uns bei folgenden Personen für die fachliche Unterstützung: Prof. Dr. Ben Jann, Klaus Eichler
 
 **Datenaufbereitung, Analysen und Darstellung:** Dr. Marc Höglinger (Winterthurer Institut für Gesundheitsökonomie, ZHAW School of Management and Law) und
 Dr. André Moser (Institut für Epidemiologie, Biostatistik und Prävention, Universität Zürich)
@@ -55,11 +55,9 @@ Dr. André Moser (Institut für Epidemiologie, Biostatistik und Prävention, Uni
 
 **Datenverfügbarkeit:** Anonymisierte Daten werden nach Abschluss sämtlicher Umfragen öffentlich zugänglich gemacht.
 
-**Rekrutierung und Kontaktierung der Umfrage-Teilnehmerinnen und Teilnehmer: **LINK Institut https://www.link.ch
+**Rekrutierung und Kontaktierung der Umfrage-Teilnehmerinnen und Teilnehmer:** LINK Institut https://www.link.ch
 
 **Impressum:**
-
-\newline
 
 Winterthurer Institut für Gesundheitsökonomie, ZHAW School of Management and Law,
 Gertrudstrasse 15,
@@ -70,7 +68,4 @@ Universität Zürich,
 Hirschengraben 84,
 CH-8001 Zürich
 
-Rekrutierung und Kontaktierung der Umfrage-Teilnehmerinnen und Teilnehmer
-
-
-Seite mit blogdown und Hugo generiert. Theme: Mainroad (https://github.com/Vimux/mainroad).
+*Seite mit blogdown und Hugo (Theme: Mainroad) generiert.*

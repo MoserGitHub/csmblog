@@ -1,5 +1,5 @@
 ---
-title: Welle 1
+title: Resultate Umfragewelle 1
 author: André Moser
 date: '2020-04-06'
 slug: welle-1
@@ -202,7 +202,7 @@ output$var[output$var=="wi7_cat6"] <- "Anderes"
 output$var[output$var=="wi7_cat7"] <- "In Anstellung"
 
 output$var[output$var=="wc1_cat"] <- "Angst Arbeitplatz zu verlieren"
-output$var[output$var=="wc2_cat"] <- "Homeoffice innerhalb der letzten 7 Tage"
+output$var[output$var=="wc2_cat"] <- "Homeoffice innerhalb\nder letzten 7 Tage"
 output$var[output$var=="wc3_cat"] <- "Homeoffice vor Corona-Krise"
 
 output$var[output$var=="cb1_1_cat"] <- "Jüngstes Kind\nist unruhig und überaktiv"
