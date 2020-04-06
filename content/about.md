@@ -63,7 +63,11 @@ Winterthurer Institut für Gesundheitsökonomie, ZHAW School of Management and L
 Gertrudstrasse 15,
 CH-8401 Winterthur
 
+![alt text](/static/img/logo_ZHAW.jpg)
+
 Institut für Epidemiologie, Biostatistik und Prävention,
 Universität Zürich,
 Hirschengraben 84,
 CH-8001 Zürich
+
+![alt text](/static/img/logo_UZH.jpeg)
