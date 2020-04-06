@@ -48,16 +48,17 @@ Projektmitarbeit: Anja Collenberg, Stephanie Dosch, Sarah Heiniger, Flurina Meie
 
 Wir bedanken uns bei folgenden Personen für die fachliche Unterstützung: Prof. Dr. Ben Jann, Klaus Eichler
 
-**Datenaufbereitung, Analysen und Darstellung:** Dr. Marc Höglinger (Winterthurer Institut für Gesundheitsökonomie, ZHAW School of Management and Law) und
-Dr. André Moser (Institut für Epidemiologie, Biostatistik und Prävention, Universität Zürich)
+## Informationen
+
+**Datenaufbereitung, Analysen und Darstellung:** Dr. Marc Höglinger (Winterthurer Institut für Gesundheitsökonomie, ZHAW School of Management and Law) und Dr. André Moser (Institut für Epidemiologie, Biostatistik und Prävention, Universität Zürich). *Seite mit blogdown und Hugo (Theme: Mainroad) generiert.*
+
+**Rekrutierung und Kontaktierung der Umfrage-Teilnehmerinnen und Teilnehmer:** LINK Institut https://www.link.ch
 
 **Reproduzierbarkeit:** Variablenaufbereitung und Analysecodes abgelegt auf https://github.com/MoserGitHub/csm
 
 **Datenverfügbarkeit:** Anonymisierte Daten werden nach Abschluss sämtlicher Umfragen öffentlich zugänglich gemacht.
 
-**Rekrutierung und Kontaktierung der Umfrage-Teilnehmerinnen und Teilnehmer:** LINK Institut https://www.link.ch
-
-**Impressum:**
+## Impressum
 
 Winterthurer Institut für Gesundheitsökonomie, ZHAW School of Management and Law,
 Gertrudstrasse 15,
@@ -67,5 +68,3 @@ Institut für Epidemiologie, Biostatistik und Prävention,
 Universität Zürich,
 Hirschengraben 84,
 CH-8001 Zürich
-
-*Seite mit blogdown und Hugo (Theme: Mainroad) generiert.*
