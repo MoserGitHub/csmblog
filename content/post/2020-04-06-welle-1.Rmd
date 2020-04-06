@@ -58,30 +58,10 @@ data <- read_dta(paste0(paste0(main.path, "/data/"), "COVSM-w1- 3 Apr 2020.dta")
 sys.source(paste0(paste0(main.path, "CSM/CSM_Variables.R")), envir = knitr::knit_global())
 ```
 
-### Umfragepopulation
+# Umfragepopulation
 
 Aus einem bestehenden Pool von Teilnehmern eines Online-Access-Panels des LINK Instituts wurden ingesamt 7942 Personen für die Umfrageteilnahme angefragt. Per `r paste0(paste0(substring(as.character(Sys.Date()), 9,10), ".", substring(as.character(Sys.Date()), 6,7)),".", substring(as.character(Sys.Date()), 1,4))` wurden Antworten von `r nrow(data)` Personen ausgewertet (Rücklaufquote `r paste0(round(nrow(data)/7942*100, 1), "%")`). Insgesamt gaben `r length(data$geschlecht[data$geschlecht%in%2])` (`r paste0(round(length(data$geschlecht[data$geschlecht%in%2])/nrow(data)*100, 1), "%")`) Frauen\* und `r length(data$geschlecht[data$geschlecht%in%1])` (`r paste0(round(length(data$geschlecht[data$geschlecht%in%1])/nrow(data)*100, 1), "%")`) Männer\* eine Antwort. Das durchschnittliche Alter der Personen welche an der Umfrage teilgenommen haben beträgt `r round(mean(data$age, na.rm=T),0)` Jahre (Jüngste Person: `r round(min(data$age, na.rm=T),0)` Jahre, Älteste Person `r round(max(data$age, na.rm=T),0)` Jahre). Davon waren `r nrow(data[data$age>=65,])` (`r paste0(round(length(data$age[data$age>=65])/nrow(data)*100, 1), "%")`) Personen älter als 65 Jahre. `r length(data$education[data$education%in%1])` (`r paste0(round(length(data$education[data$education%in%1])/nrow(data)*100, 1), "%")`) der befragten Personen hatten einen obligatorischen Schulabschluss, `r length(data$education[data$education%in%2])` (`r paste0(round(length(data$education[data$education%in%2])/nrow(data)*100, 1), "%")`) einen Sekundarstufeabschluss und `r length(data$education[data$education%in%3])` (`r paste0(round(length(data$education[data$education%in%3])/nrow(data)*100, 1), "%")`) einen Abschluss auf Tertiärstufe (`r length(data$education[is.na(data$education)])` [`r paste0(round(length(data$education[is.na(data$education)])/nrow(data)*100, 1), "%")`) Personen machten keine Angabe zur Ausbildung]. Es wurden `r length(data$lregion[data$lregion%in%1])` (`r paste0(round(length(data$lregion[data$lregion%in%1])/nrow(data)*100, 1), "%")`) Personen in der Deutschschweiz, `r length(data$lregion[data$lregion%in%2])` (`r paste0(round(length(data$lregion[data$lregion%in%2])/nrow(data)*100, 1), "%")`) in der Romandie (frankophone Schweiz) und `r length(data$lregion[data$lregion%in%3])` (`r paste0(round(length(data$lregion[data$lregion%in%3])/nrow(data)*100, 1), "%")`) in der italienisch-sprechenden Region der Schweiz befragt.
 
-&nbsp;  
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;  
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;  
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;  
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;  
-&nbsp;
-&nbsp;
-&nbsp;
 &nbsp;
 
 ```{r analysis vars, echo=FALSE, results='hide', warning=FALSE, message=FALSE}
