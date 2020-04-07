@@ -2,7 +2,11 @@
 	<div class="container">
 		<div class="logo">
 			<a class="logo__link" href="{{ "" | relLangURL }}" title="{{ .Site.Title }}" rel="home">
-				<div class="logo__title">{{ .Site.Title }}</div>
+				<div class="logo__title">
+				  {{ .Site.Title }}
+				   <img src="static/img/logo_ZHAW.jpg", style = 'position:relative; left:70px;'>
+				  <img src="static/img/logo_UZH.jpeg", style = 'position:relative; left:90px;'>
+				  </div>
 				{{ with .Site.Params.subtitle }}<div class="logo__tagline">{{ . }}</div>{{ end }}
 			</a>
 		</div>
