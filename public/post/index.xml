@@ -6,10 +6,37 @@
     <description>Recent content in Posts on COVID-19 Social Monitor</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>de</language>
-    <lastBuildDate>Wed, 22 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tmp</title>
+      <link>/post/tmp/</link>
+      <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/tmp/</guid>
+      <description>Allgemeine Gesundheit und Wohlbefinden  Körperliche Gesundheit  {&#34;x&#34;:{&#34;data&#34;:[{&#34;x&#34;:[0.92,1.92,2.92,0.92,1.92,2.92,0.92,1.92,2.92],&#34;y&#34;:[0.441,0.403,0.407,0.441,0.403,0.407,0.441,0.403,0.407],&#34;text&#34;:[&#34;wave: Welle 1
+val: 0.441
+var: Allgemeine Schwäche,
+Müdigkeit, Energielosigkeit&#34;,&#34;wave: Welle 2
+val: 0.403
+var: Allgemeine Schwäche,
+Müdigkeit, Energielosigkeit&#34;,&#34;wave: Welle 3
+val: 0.407
+var: Allgemeine Schwäche,
+Müdigkeit, Energielosigkeit&#34;,&#34;wave: Welle 1
+val: 0.441
+var: Allgemeine Schwäche,
+Müdigkeit, Energielosigkeit&#34;,&#34;wave: Welle 2
+val: 0.403
+var: Allgemeine Schwäche,
+Müdigkeit, Energielosigkeit&#34;,&#34;wave: Welle 3
+val: 0.407
+var: Allgemeine Schwäche,
+Müdigkeit, Energielosigkeit&#34;</description>
+    </item>
     
     <item>
       <title>Zeitliche Entwicklung</title>
