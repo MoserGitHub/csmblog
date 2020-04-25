@@ -12,23 +12,28 @@ summary: 'Beschreibung der angewandten Methodik'
 
 
 
+<div id="konstruktion-der-kalibrierungsgewichte" class="section level2">
+<h2>Konstruktion der Kalibrierungsgewichte</h2>
 <div id="hintergrund" class="section level3">
 <h3>Hintergrund</h3>
 <p>Umfragepopulationen können nicht repräsentativ zur Zielpopulation sein. Beispielsweise kann es sein, dass eher jüngere Personen an Onlineumfragen teilnehmen. Dies kann zu verzerrten Schätzwerten führen. Kalibrierungsgewichte erlauben eine Umfragepopulation auf die Zielpopulation (hier: Bevölkerung der Schweiz älter als 18 Jahre mit Onlineanschluss) zu “kalibrieren”. Die Konstruktion von Kalibrierungsgewichten erfolgt aufgrund Faktoren, bei welchen man einen Zusammenhang zwischen “Umfrageteilnahme” und den zu untersuchenden Variablen erwartet. Häufig sind dies Variablen wie Alter, Geschlecht, Ausbildung oder Region. Die Kalibrierungsgewichte “gewichten” Individuen aus der Umfrage, so dass diese repräsentativ für die Zielpopulation sind. Ein Gewicht von 100 bei einer 30-jährigen in der Grossregion Zürich lebenden Frau mit Tertiärausbildung bedeutet somit, dass diese Frau (mit den erwähnten Ausprägungen) 100 mal “kopiert” wird, so dass diese gleich wie in der Zielpopulation vertreten ist.</p>
+</div>
+<div id="bevölkerungsverteilung-im-jahr-2018-gemäss-bundesamt-für-statistik" class="section level3">
+<h3>Bevölkerungsverteilung im Jahr 2018 gemäss Bundesamt für Statistik</h3>
 <p><img src="/post/2020-04-26-weights_files/figure-html/map1-1.png" width="576" /></p>
 </div>
-<div id="verteilung-der-zielpopulation-nach-ausbildung" class="section level3">
-<h3>Verteilung der Zielpopulation nach Ausbildung</h3>
+<div id="bevölkerungsverteilung-nach-ausbildung-im-jahr-2018-gemäss-bundesamt-für-statistik" class="section level3">
+<h3>Bevölkerungsverteilung nach Ausbildung im Jahr 2018 gemäss Bundesamt für Statistik</h3>
 <p><img src="/post/2020-04-26-weights_files/figure-html/map1.1-1.png" width="576" /><img src="/post/2020-04-26-weights_files/figure-html/map1.1-2.png" width="576" /><img src="/post/2020-04-26-weights_files/figure-html/map1.1-3.png" width="576" /></p>
 </div>
-<div id="gesamtverteilung-der-teilnehmenden-an-der-ersten-umfrage" class="section level3">
-<h3>Gesamtverteilung der Teilnehmenden an der ersten Umfrage</h3>
+<div id="gesamtverteilung-der-teilnehmenden-an-der-ersten-umfragewelle" class="section level3">
+<h3>Gesamtverteilung der Teilnehmenden an der ersten Umfragewelle</h3>
 <p><img src="/post/2020-04-26-weights_files/figure-html/map2-1.png" width="576" /></p>
 </div>
-<div id="konstruktion-der-kalibrierungsgewichte" class="section level3">
+<div id="konstruktion-der-kalibrierungsgewichte-1" class="section level3">
 <h3>Konstruktion der Kalibrierungsgewichte</h3>
-<p>Für die Konstruktion der Kalibrierungsgewichte verwenden wir ein logistisches Regressionsmodell bei welchem wir als unabhängige Variable die “Teilnahme an Onlineumfrage” nehmen. Als Kalibrierungsfaktoren verwenden wir Alterskategorien (<em>agecat1</em>: &lt;45 Jahre, <em>agecat2</em>: 45- &lt;65 Jahre, <em>agecat3</em>: 65+ Jahre), höchster Ausbildungstand (<em>educ1</em>: Obligatorische Ausbildung, <em>educ2</em>: Sekundär Ausbildung, <em>educ3</em>: Tertiär Ausbildung) und Wohnregion (7 Hauptregionen). Für jede dieser Kategoriezellen liegt die unterliegende Bevölkerungszahl vom Bundesamt für Statistik vor (<a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/kataloge-datenbanken/tabellen.assetdetail.11627128.html">siehe Link BFS</a>).
-Der Output des logistischen Regressionsmodells ergibt:</p>
+<p>Für die Konstruktion der Kalibrierungsgewichte verwenden wir ein logistisches Regressionsmodell bei welchem wir als unabhängige Variable die “Teilnahme an Onlineumfrage” nehmen. Als Kalibrierungsfaktoren verwenden wir Alterskategorien (<em>agecat1</em>: &lt;45 Jahre, <em>agecat2</em>: 45- &lt;65 Jahre, <em>agecat3</em>: 65+ Jahre), höchster Ausbildungstand (<em>educ1</em>: Obligatorische Ausbildung, <em>educ2</em>: Sekundär Ausbildung, <em>educ3</em>: Tertiär Ausbildung) und Wohnregion (7 Hauptregionen). Für jede dieser Kategoriezellen liegt die unterliegende Bevölkerungszahl vom Bundesamt für Statistik vor (<a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/kataloge-datenbanken/tabellen.assetdetail.11627128.html">siehe Link BFS</a>).</p>
+<p>Der Output des logistischen Regressionsmodells ergibt:</p>
 <pre><code>##                   OR  lci  uci
 ## factor(agecat)2 0.68 0.62 0.75
 ## factor(agecat)3 0.49 0.43 0.56
@@ -40,11 +45,12 @@ Der Output des logistischen Regressionsmodells ergibt:</p>
 ## factor(reg)5    1.16 0.98 1.36
 ## factor(reg)6    1.20 1.01 1.44
 ## factor(reg)7    4.34 3.70 5.09</code></pre>
-<p>Somit haben bspw. Individuen mit einer Tertiärausbildung (educ==3) eine um den Faktor 2.77, 95% Konfidentintervall (2.32, 3.30), höhere Teilnahme“chance” an der Umfrage als Individuen mit einer obgligatorischen Ausbildung.</p>
+<p>Somit haben bspw. Individuen mit einer Tertiärausbildung (educ==3) eine um den Faktor 2.77, 95% Konfidenzintervall (2.32, 3.30), höhere Teilnahme“chance” an der Umfrage als Individuen mit einer obgligatorischen Ausbildung.</p>
 <p>Aus dem oben gezeigtem Modell können wir Kalibrierungsgewichte berechnen. Unstabilisierte Gewichte repräsentieren 1:1 die Zielpopulation, können aber hohe Werte (mit Ausreissern) annehmen.</p>
 <p><img src="/post/2020-04-26-weights_files/figure-html/plotwght1-1.png" width="672" /></p>
 <p>Stabilisierte Gewichte werden mit einem zusätzlichen Faktor angepasst, so dass jedes Individuum einen Anteil gemäss durchschnittlicher Umfrageteilnahme hat. Diese stabilisierten Gewichte haben einen Mittelwert um 1 und zeigen robustere Eigenschaften mit engeren Konfidenzintervallen bei späteren Schätzungen. <strong>Für zukünftige gewichtet Analysen werden wir stabilisierte Kalibrierungsgewichte verwenden</strong>.</p>
 <p><img src="/post/2020-04-26-weights_files/figure-html/plotwght2-1.png" width="672" /></p>
+</div>
 </div>
 <div id="beispiele" class="section level1">
 <h1>Beispiele</h1>
