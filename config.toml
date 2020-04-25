@@ -1,4 +1,4 @@
-baseurl = "https://csm.netlifly.app/"
+baseurl = "https://csm.netlify.app/"
 title = "COVID-19 Social Monitor"
 languageCode = "de"
 paginate = "10" # Number of posts per page
