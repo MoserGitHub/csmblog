@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Repräsentativität und Kalibrierung der Umfrage - COVID-19 Social Monitor</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta property="og:title" content="Repräsentativität und Kalibrierung der Umfrage" />
+<meta property="og:description" content="Beschreibung der angewandten Methodik" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/weights/" />
+<meta property="article:published_time" content="2020-04-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-04-26T00:00:00+00:00" />
+
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="COVID-19 Social Monitor" rel="home">
+				<div class="logo__title">COVID-19 Social Monitor</div>
+				<div class="logo__tagline">Zeitnahes Monitoring der Auswirkungen der COVID-19-Krise auf die Gesundheit und das Leben der Bevölkerung in der Schweiz</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">Über COVID-19 Social Monitor</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Repräsentativität und Kalibrierung der Umfrage</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-04-26T00:00:00Z">April 26, 2020</time></div></div>
+		</header><div class="content post__content clearfix">
+			
+
+
+<div id="hintergrund" class="section level3">
+<h3>Hintergrund</h3>
+<p>Umfragepopulationen können nicht repräsentativ zur Zielpopulation sein. Beispielsweise kann es sein, dass eher jüngere Personen an Onlineumfragen teilnehmen. Dies kann zu verzerrten Schätzwerten führen. Kalibrierungsgewichte erlauben eine Umfragepopulation auf die Zielpopulation (hier: Bevölkerung der Schweiz älter als 18 Jahre mit Onlineanschluss) zu “kalibrieren”. Die Konstruktion von Kalibrierungsgewichten erfolgt aufgrund Faktoren, bei welchen man einen Zusammenhang zwischen “Umfrageteilnahme” und den zu untersuchenden Variablen erwartet. Häufig sind dies Variablen wie Alter, Geschlecht, Ausbildung oder Region. Die Kalibrierungsgewichte “gewichten” Individuen aus der Umfrage, so dass diese repräsentativ für die Zielpopulation sind. Ein Gewicht von 100 bei einer 30-jährigen in der Grossregion Zürich lebenden Frau mit Tertiärausbildung bedeutet somit, dass diese Frau (mit den erwähnten Ausprägungen) 100 mal “kopiert” wird, so dass diese gleich wie in der Zielpopulation vertreten ist.</p>
+<p><img src="/post/2020-04-26-weights_files/figure-html/map1-1.png" width="576" /></p>
+</div>
+<div id="verteilung-der-zielpopulation-nach-ausbildung" class="section level3">
+<h3>Verteilung der Zielpopulation nach Ausbildung</h3>
+<p><img src="/post/2020-04-26-weights_files/figure-html/map1.1-1.png" width="576" /><img src="/post/2020-04-26-weights_files/figure-html/map1.1-2.png" width="576" /><img src="/post/2020-04-26-weights_files/figure-html/map1.1-3.png" width="576" /></p>
+</div>
+<div id="gesamtverteilung-der-teilnehmenden-an-der-ersten-umfrage" class="section level3">
+<h3>Gesamtverteilung der Teilnehmenden an der ersten Umfrage</h3>
+<p><img src="/post/2020-04-26-weights_files/figure-html/map2-1.png" width="576" /></p>
+</div>
+<div id="konstruktion-der-kalibrierungsgewichte" class="section level3">
+<h3>Konstruktion der Kalibrierungsgewichte</h3>
+<p>Für die Konstruktion der Kalibrierungsgewichte verwenden wir ein logistisches Regressionsmodell bei welchem wir als unabhängige Variable die “Teilnahme an Onlineumfrage” nehmen. Als Kalibrierungsfaktoren verwenden wir Alterskategorien (<em>agecat1</em>: &lt;45 Jahre, <em>agecat2</em>: 45- &lt;65 Jahre, <em>agecat3</em>: 65+ Jahre), höchster Ausbildungstand (<em>educ1</em>: Obligatorische Ausbildung, <em>educ2</em>: Sekundär Ausbildung, <em>educ3</em>: Tertiär Ausbildung) und Wohnregion (7 Hauptregionen). Für jede dieser Kategoriezellen liegt die unterliegende Bevölkerungszahl vom Bundesamt für Statistik vor (<a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/kataloge-datenbanken/tabellen.assetdetail.11627128.html">siehe Link BFS</a>).
+Der Output des logistischen Regressionsmodells ergibt:</p>
+<pre><code>##                   OR  lci  uci
+## factor(agecat)2 0.68 0.62 0.75
+## factor(agecat)3 0.49 0.43 0.56
+## factor(educ)2   2.46 2.07 2.93
+## factor(educ)3   2.77 2.32 3.30
+## factor(reg)2    1.14 0.99 1.32
+## factor(reg)3    1.04 0.88 1.23
+## factor(reg)4    0.86 0.73 1.01
+## factor(reg)5    1.16 0.98 1.36
+## factor(reg)6    1.20 1.01 1.44
+## factor(reg)7    4.34 3.70 5.09</code></pre>
+<p>Somit haben bspw. Individuen mit einer Tertiärausbildung (educ==3) eine um den Faktor 2.77, 95% Konfidentintervall (2.32, 3.30), höhere Teilnahme“chance” an der Umfrage als Individuen mit einer obgligatorischen Ausbildung.</p>
+<p>Aus dem oben gezeigtem Modell können wir Kalibrierungsgewichte berechnen. Unstabilisierte Gewichte repräsentieren 1:1 die Zielpopulation, können aber hohe Werte (mit Ausreissern) annehmen.</p>
+<p><img src="/post/2020-04-26-weights_files/figure-html/plotwght1-1.png" width="672" /></p>
+<p>Stabilisierte Gewichte werden mit einem zusätzlichen Faktor angepasst, so dass jedes Individuum einen Anteil gemäss durchschnittlicher Umfrageteilnahme hat. Diese stabilisierten Gewichte haben einen Mittelwert um 1 und zeigen robustere Eigenschaften mit engeren Konfidenzintervallen bei späteren Schätzungen. <strong>Für zukünftige gewichtet Analysen werden wir stabilisierte Kalibrierungsgewichte verwenden</strong>.</p>
+<p><img src="/post/2020-04-26-weights_files/figure-html/plotwght2-1.png" width="672" /></p>
+</div>
+<div id="beispiele" class="section level1">
+<h1>Beispiele</h1>
+<p>Nachfolgend zeigen wir zwei Beispiele, wie sich die ungewichteten Analysen von den gewichteten (stabiliserte Kalibrierungsgewichte) unterscheiden.</p>
+<p><img src="/post/2020-04-26-weights_files/figure-html/ss1-1.png" width="672" /></p>
+<p><img src="/post/2020-04-26-weights_files/figure-html/hs1-1.png" width="672" /></p>
+<p>* Bei der ersten Umfragewelle wurde der Zeitraum der letzten 14 Tage erfragt.</p>
+<p> <br />
+ </p>
+<p><strong>Kartendarstellung:</strong> Färbungen: Grossregionen</p>
+<p><strong>Quelle Karten Shapefile:</strong> Bundesamt für Landestopograpfie, swisstopo</p>
+<p><strong>Autor:</strong> André Moser, Institut für Epidemiologie, Biostatistik und Prävention, Universität Zürich</p>
+</div>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/trend/" rel="prev">
+			<span class="post-nav__caption">«&thinsp;Previous</span>
+			<p class="post-nav__post-title">Zeitliche Entwicklung</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar">
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/weights/">Repräsentativität und Kalibrierung der Umfrage</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/trend/">Zeitliche Entwicklung</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/wave3/">Resultate Umfragewelle 3</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/wave2/">Resultate Umfragewelle 2</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/wave1/">Resultate Umfragewelle 1</a></li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 COVID-19 Social Monitor.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
