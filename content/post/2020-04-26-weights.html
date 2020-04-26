@@ -47,6 +47,7 @@ summary: 'Beschreibung der angewandten Methodik'
 <h3>Konstruktion der Kalibrierungsgewichte</h3>
 <p>Für die Konstruktion der Kalibrierungsgewichte verwenden wir ein logistisches Regressionsmodell mit unabhängiger Variable “Umfrageteilnahme”. Als Kalibrierungsfaktoren verwenden wir Alterskategorien (<em>agecat1</em>: &lt;45 Jahre, <em>agecat2</em>: 45- &lt;65 Jahre, <em>agecat3</em>: 65+ Jahre), höchster Ausbildungstand (<em>educ1</em>: Obligatorische Ausbildung, <em>educ2</em>: Sekundär Ausbildung, <em>educ3</em>: Tertiär Ausbildung) und Wohnregion (7 Hauptregionen). Die Bevölkerungsverteilung dieser Kategoriezellen wurde oben dargestellt (<a href="https://www.bfs.admin.ch/bfs/de/home/statistiken/kataloge-datenbanken/tabellen.assetdetail.11627128.html">Quelle Bundesamt für Statistik</a>).</p>
 <p>Der Output des logistischen Regressionsmodells ergibt:</p>
+<pre><code>## Modell Output</code></pre>
 <pre><code>##                 Estimate Std. Error z value Pr(&gt;|z|)
 ## (Intercept)       -8.800      0.100  -88.00  0.0e+00
 ## factor(agecat)2   -0.380      0.049   -7.80  7.3e-15
@@ -59,6 +60,7 @@ summary: 'Beschreibung der angewandten Methodik'
 ## factor(reg)5       0.150      0.083    1.70  8.1e-02
 ## factor(reg)6       0.190      0.091    2.00  4.1e-02
 ## factor(reg)7       1.500      0.082   18.00  3.9e-72</code></pre>
+<pre><code>## Odds-Ratios</code></pre>
 <pre><code>##                   OR  lci  uci
 ## factor(agecat)2 0.68 0.62 0.75
 ## factor(agecat)3 0.49 0.43 0.56
@@ -70,6 +72,8 @@ summary: 'Beschreibung der angewandten Methodik'
 ## factor(reg)5    1.16 0.98 1.36
 ## factor(reg)6    1.20 1.01 1.44
 ## factor(reg)7    4.34 3.70 5.09</code></pre>
+<pre><code>## Summe der Kalibierungsgewichte</code></pre>
+<pre><code>## [1] 6105091</code></pre>
 <p>Somit haben bspw. Individuen mit einer Tertiärausbildung (educ==3) eine um den Faktor 2.77, 95% Konfidenzintervall (2.32, 3.30), höhere Umfrageteilnahme als Individuen mit einer obgligatorischen Ausbildung.</p>
 <p>Aus dem oben gezeigtem Modell können wir Kalibrierungsgewichte berechnen. Nicht-stabilisierte Gewichte repräsentieren 1:1 die Zielpopulation, können aber hohe Werte (mit Ausreissern) annehmen.</p>
 <p><img src="/post/2020-04-26-weights_files/figure-html/plotwght1-1.png" width="672" /></p>
