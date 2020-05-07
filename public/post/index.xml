@@ -6,10 +6,19 @@
     <description>Recent content in Posts on COVID-19 Social Monitor</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>de</language>
-    <lastBuildDate>Fri, 01 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 06 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Resultate Umfragewelle 4</title>
+      <link>/post/welle-4/</link>
+      <pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/welle-4/</guid>
+      <description>Resultate der zweiten Welle mit Erhebungszeitraum 27. April 2020 bis 04. Mai 2020</description>
+    </item>
     
     <item>
       <title>Kalibrierung der Umfrage</title>
