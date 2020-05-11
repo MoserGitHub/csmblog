@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Zeitliche Entwicklung</title>
+      <link>/post/trend/</link>
+      <pubDate>Sun, 10 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/trend/</guid>
+      <description>Zeitliche Entwicklung Umfragewellen 1 bis 4</description>
+    </item>
+    
+    <item>
       <title>Resultate Umfragewelle 4</title>
       <link>/post/welle-4/</link>
       <pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate>
@@ -27,15 +36,6 @@
       
       <guid>/post/weights/</guid>
       <description>Beschreibung der angewandten Methodik</description>
-    </item>
-    
-    <item>
-      <title>Zeitliche Entwicklung</title>
-      <link>/post/trend/</link>
-      <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/post/trend/</guid>
-      <description>Zeitliche Entwicklung Umfragewellen 1 bis 3</description>
     </item>
     
     <item>
