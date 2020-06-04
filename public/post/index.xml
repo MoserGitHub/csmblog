@@ -6,10 +6,19 @@
     <description>Recent content in Posts on COVID-19 Social Monitor</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>de</language>
-    <lastBuildDate>Tue, 19 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Nicht-Beanspruchung medizinischer Behandlungen</title>
+      <link>/post/zhaw1/</link>
+      <pubDate>Wed, 20 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/zhaw1/</guid>
+      <description>Blogbeitrag von Marc Höglinger zur Nicht-Beanspruchung medizinischer Behandlungen</description>
+    </item>
     
     <item>
       <title>Resultate Umfragewelle 5</title>
