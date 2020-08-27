@@ -6,10 +6,28 @@
     <description>Recent content in Posts on COVID-19 Social Monitor</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>de</language>
-    <lastBuildDate>Wed, 19 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Resultate Umfragewelle 9</title>
+      <link>/post/welle-9/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/welle-9/</guid>
+      <description>Resultate der neunten Welle mit Erhebungszeitraum vom 17. August 2020 bis 25. August 2020</description>
+    </item>
+    
+    <item>
+      <title>Zeitliche Entwicklung</title>
+      <link>/post/trend/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/trend/</guid>
+      <description>Zeitliche Entwicklung Umfragewellen 1 bis 9</description>
+    </item>
     
     <item>
       <title>Lebenszufriedenheit von Personen aus stark betroffenen Wirtschaftsbranchen</title>
@@ -27,15 +45,6 @@
       
       <guid>/post/welle-8/</guid>
       <description>Resultate der achten Welle mit Erhebungszeitraum 13. Juli 2020 bis 20. Juli 2020</description>
-    </item>
-    
-    <item>
-      <title>Zeitliche Entwicklung</title>
-      <link>/post/trend/</link>
-      <pubDate>Wed, 22 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/post/trend/</guid>
-      <description>Zeitliche Entwicklung Umfragewellen 1 bis 8</description>
     </item>
     
     <item>
